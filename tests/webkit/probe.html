@@ -1,0 +1,13 @@
+<!doctype html><html><head><meta charset="utf-8"><title>probe</title></head><body><script>
+// Same measurement as inspect-blocker.js sample(), but records the raw timings.
+var probe=[];for(var i=0;i<50;i++){var r={};for(var k=0;k<500;k++)r[k]=k;probe.push(r);}
+window.samples=[];
+function now(){return performance.now();}
+setInterval(function(){
+  var t0=now();console.log(probe);var l1=now()-t0;
+  t0=now();console.table(probe);var t=now()-t0;
+  t0=now();console.log(probe);var l2=now()-t0;
+  console.clear();
+  samples.push([+l1.toFixed(2),+t.toFixed(2),+l2.toFixed(2)]);
+},1000);
+</script></body></html>

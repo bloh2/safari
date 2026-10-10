@@ -1,0 +1,1 @@
+(function(){var st=document.querySelector('[data-state]');return {secret:!!document.getElementById('secret'),title:document.title,state:st&&st.getAttribute('data-state'),bodyRuns:+sessionStorage.bodyRuns||0,loads:performance.getEntriesByType('navigation')[0].type};})()

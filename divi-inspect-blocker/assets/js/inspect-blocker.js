@@ -61,14 +61,25 @@
 			'keydown',
 			function ( e ) {
 				// e.code, not e.key: with Option held a Mac reports "ˆ" for I.
-				var key = ( e.code || e.key || '' ).replace( /^Key/, '' ).toLowerCase();
-				var mod = e.ctrlKey || e.metaKey;
+				// Safari before 10.1 has no e.code; keyCode is still the letter.
+				var key = ( e.code || '' ).replace( /^Key/, '' ).toLowerCase();
+				if ( ! key ) {
+					key = e.keyCode >= 65 && e.keyCode <= 90 ? String.fromCharCode( e.keyCode ).toLowerCase() : String( e.key || '' ).toLowerCase();
+				}
+				// Ctrl and Cmd are kept apart: Windows reports AltGr as Ctrl+Alt,
+				// so treating Ctrl+Alt like Cmd+Opt would swallow ć, € and the like.
+				var ctrl = e.ctrlKey && ! e.metaKey && ! e.altKey;
+				var cmd = e.metaKey && ! e.ctrlKey;
 				var devtools =
 					key === 'f12' || e.keyCode === 123 ||
-					// Ctrl+Shift+I/J/C (Windows, Linux), Cmd+Opt+I/J/C (Mac), Firefox's Ctrl+Shift+K.
-					( mod && ( e.shiftKey || e.altKey ) && /^[ijck]$/.test( key ) ) ||
-					// View source: Ctrl+U, Cmd+Opt+U.
-					( mod && ! e.shiftKey && key === 'u' );
+					// Ctrl+Shift+I/J/C (Windows, Linux), Firefox's Ctrl+Shift+K.
+					( ctrl && e.shiftKey && /^[ijck]$/.test( key ) ) ||
+					// Cmd+Opt+I/J/C (Mac), Cmd+Shift+C (element picker), Firefox's Cmd+Opt+K.
+					( cmd && ( e.shiftKey || e.altKey ) && /^[ijck]$/.test( key ) ) ||
+					// Safari: Cmd+Opt+A (Page Resources), Cmd+Opt+Shift+T (Timeline).
+					( cmd && e.altKey && ( key === 'a' || ( e.shiftKey && key === 't' ) ) ) ||
+					// View source: Ctrl+U, Cmd+U (Firefox), Cmd+Opt+U (Chrome, Safari).
+					( ( ctrl || cmd ) && ! e.shiftKey && key === 'u' );
 
 				if ( devtools ) {
 					e.preventDefault();

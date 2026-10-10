@@ -20,7 +20,7 @@ notice and does nothing. PHP 7.4+.
 | **Wipe** | `<head>` and `<body>` are removed outright, along with the site's styles, content and attributes, and the error page is built in their place. A MutationObserver removes anything other scripts add later. |
 | **Reload button** | Checks first. If DevTools are still open it says so and shakes, instead of reloading. |
 | **Automatic reload** | Keeps checking after the wipe, and reloads two seconds after DevTools close. |
-| **Right-click / shortcuts** | Separate switches that work with or without detection. Right-click is kept in form fields so copy and paste still work. Shortcuts: F12, Ctrl+Shift+I/J/C/K, Ctrl+U and the Mac equivalents. |
+| **Right-click / shortcuts** | Separate switches that work with or without detection. Right-click is kept in form fields so copy and paste still work. Shortcuts: F12, Ctrl+Shift+I/J/C/K, Ctrl+U and the Mac equivalents (Cmd+Opt+I/J/C/U, Cmd+Shift+C, Cmd+U), plus Safari's Cmd+Opt+A and Cmd+Opt+Shift+T. Ctrl+Alt is left alone, because on Windows that is AltGr and is used for typing characters such as ć and €. |
 
 ### Who is checked
 
@@ -70,7 +70,13 @@ Network panel, a proxy, `curl`, or turning JavaScript off all still show it. Thi
 stops casual inspection only.
 
 - Tested in Chrome 154, Edge 154 and Firefox 157 (desktop): blocked with DevTools
-  open, no false positives with them closed. Not tested in Safari.
+  open, no false positives with them closed.
+- Safari: tested on WebKit (WebKitGTK 2.52 with its Web Inspector, the same engine
+  and inspector frontend Safari uses), not on Safari itself. With the inspector
+  attached, `console.table()` took 42–180ms; detached, 0ms. Docked and undocked
+  inspector, already open at load, Reload button and automatic reload all behave
+  as above. Safari users can still open the inspector from the Develop menu; the
+  page is then hidden in the same way.
 - Undocked DevTools in a separate window are detected the same way.
 - Clears the console once per check while a guarded page is open.
 

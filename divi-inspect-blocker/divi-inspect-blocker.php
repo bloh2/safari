@@ -3,7 +3,7 @@
  * Plugin Name: Divi Inspect Blocker
  * Plugin URI:  https://divi.help/
  * Description: Hides the site while a visitor has the browser's developer tools (Inspect) open, and shows a customisable error page instead — then brings the page back by itself once they close. Settings live in Divi > Theme Options > Inspect Blocker.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Requires PHP: 7.4
  * Requires at least: 5.8
  * Author:      Divi.Help
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DIB_VERSION', '1.0.0' );
+define( 'DIB_VERSION', '1.0.1' );
 define( 'DIB_FILE', __FILE__ );
 define( 'DIB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DIB_URL', plugin_dir_url( __FILE__ ) );
