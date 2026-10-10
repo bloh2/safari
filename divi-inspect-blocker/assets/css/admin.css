@@ -1,0 +1,295 @@
+/* Divi Inspect Blocker — Theme Options tab. */
+
+#wrap-dib .dib-hidden {
+	display: none !important;
+}
+
+#wrap-dib .dib-visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	clip: rect(0 0 0 0) !important;
+	white-space: nowrap !important;
+}
+
+/* Boxes that need the full width: title above, control below. */
+#wrap-dib .et-epanel-box.dib-wide {
+	display: block;
+}
+
+#wrap-dib .et-epanel-box.dib-wide .et-box-title,
+#wrap-dib .et-epanel-box.dib-wide .et-box-content {
+	display: block;
+	float: none;
+	width: 100%;
+	max-width: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#wrap-dib .et-epanel-box.dib-wide .et-box-content {
+	margin-top: 14px;
+}
+
+#wrap-dib .et-epanel-box.dib-wide .et-box-description {
+	display: none;
+}
+
+/* ---------------------------------------------------------------- Preview */
+
+.dib-preview {
+	border-radius: 12px;
+	overflow: hidden;
+	background: #0f172a;
+	box-shadow: 0 0 0 1px rgba(15, 23, 42, .08), 0 18px 40px -22px rgba(15, 23, 42, .55);
+}
+
+.dib-preview__bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 14px;
+	padding: 9px 12px;
+	background: #1e293b;
+	color: #cbd5e1;
+	font-size: 12px;
+}
+
+.dib-preview__dots {
+	display: inline-flex;
+	gap: 6px;
+}
+
+.dib-preview__dots i {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #475569;
+}
+
+.dib-preview__dots i:nth-child(1) { background: #f87171; }
+.dib-preview__dots i:nth-child(2) { background: #fbbf24; }
+.dib-preview__dots i:nth-child(3) { background: #34d399; }
+
+.dib-preview__url {
+	flex: 1 1 140px;
+	min-width: 0;
+	padding: 4px 10px;
+	border-radius: 6px;
+	background: #0f172a;
+	color: #94a3b8;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.dib-preview__views,
+.dib-preview__states {
+	display: inline-flex;
+	padding: 2px;
+	border-radius: 7px;
+	background: #0f172a;
+}
+
+.dib-preview__bar button {
+	appearance: none;
+	border: 0;
+	margin: 0;
+	padding: 4px 10px;
+	border-radius: 5px;
+	background: transparent;
+	color: #94a3b8;
+	font: inherit;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+.dib-preview__bar button:hover {
+	color: #e2e8f0;
+}
+
+.dib-preview__bar button.is-active {
+	background: #334155;
+	color: #fff;
+}
+
+.dib-preview__bar button:focus-visible {
+	outline: 2px solid #7c5cff;
+	outline-offset: 1px;
+}
+
+.dib-preview__stage {
+	position: relative;
+	overflow: hidden;
+	height: 375px;
+	background: #0b1020;
+}
+
+.dib-preview.is-mobile .dib-preview__stage {
+	background: repeating-linear-gradient(45deg, #111827 0 10px, #0f172a 10px 20px);
+}
+
+.dib-preview__frame {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 0;
+	transform-origin: 0 0;
+	background: #0b1020;
+}
+
+.dib-preview.is-mobile .dib-preview__frame {
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 20px 50px rgba(0, 0, 0, .5);
+}
+
+/* ---------------------------------------------------------------- Designs */
+
+.dib-designs {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+	gap: 12px;
+}
+
+.dib-design {
+	appearance: none;
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	margin: 0;
+	padding: 6px 6px 9px;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	background: #fff;
+	cursor: pointer;
+	text-align: left;
+	transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+.dib-design:hover {
+	border-color: #c7d2fe;
+	transform: translateY(-1px);
+	box-shadow: 0 8px 20px -12px rgba(15, 23, 42, .4);
+}
+
+.dib-design.is-active {
+	border-color: #7c5cff;
+	box-shadow: 0 0 0 2px rgba(124, 92, 255, .35);
+}
+
+.dib-design:focus-visible {
+	outline: 2px solid #7c5cff;
+	outline-offset: 2px;
+}
+
+.dib-design__thumb {
+	position: relative;
+	display: block;
+	width: 100%;
+	aspect-ratio: 16 / 10;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #0b1020;
+}
+
+.dib-design__thumb iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 800px;
+	height: 500px;
+	border: 0;
+	transform-origin: 0 0;
+	/* Thumb width / 800; admin.js keeps it exact. */
+	transform: scale(.17);
+	pointer-events: none;
+}
+
+.dib-design__name {
+	padding: 0 4px;
+	font-size: 12.5px;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+.dib-design.is-active .dib-design__name {
+	color: #5b3df5;
+}
+
+/* ---------------------------------------------------------------- Colours */
+
+/* ePanel forces every Iris picker open and hides the swatch (it only uses them
+   inside its colour palette); give these back their normal behaviour. */
+#wrap-dib .dib-color-box .wp-picker-container {
+	display: inline-block;
+	position: relative;
+}
+
+#wrap-dib .dib-color-box .wp-color-result {
+	display: inline-block;
+	position: relative;
+	margin: 0 6px 0 0;
+	vertical-align: top;
+}
+
+#wrap-dib .dib-color-box .iris-picker {
+	display: none !important;
+}
+
+#wrap-dib .dib-color-box .wp-picker-active .iris-picker {
+	display: block !important;
+}
+
+#wrap-dib .dib-color-box .wp-picker-holder {
+	position: absolute;
+	z-index: 20;
+	margin-top: 6px;
+}
+
+#wrap-dib .dib-color-box .wp-picker-input-wrap {
+	vertical-align: top;
+}
+
+#wrap-dib .dib-color-box .wp-picker-container input.dib-color {
+	display: inline-block;
+	width: 120px;
+	min-height: 30px;
+}
+
+/* ---------------------------------------------------------------- Tools */
+
+#wrap-dib .dib-tools {
+	display: block;
+}
+
+/* ePanel resets link padding and type with #epanel-level selectors. */
+#epanel #wrap-dib a.dib-tools__btn {
+	line-height: 1.4;
+	font-size: 13px;
+	padding: 9px 18px;
+	margin: 0;
+}
+
+.dib-tools__btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 9px 16px;
+	border-radius: 999px;
+	background: linear-gradient(135deg, #7c5cff, #4f8cff);
+	color: #fff !important;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 10px 22px -12px rgba(124, 92, 255, .9);
+}
+
+.dib-tools__btn:hover {
+	filter: brightness(1.06);
+}
+
+.dib-tools__note {
+	margin: 10px 0 0;
+	color: #64748b;
+	font-size: 13px;
+	line-height: 1.5;
+}
